@@ -1,7 +1,7 @@
 # Homework
 ### 1. The counting of ranks, does not necessarily has to be a mix-and-match between mpi4py and PALS. Try to implement the rank counting method using just PALS or mpi4py. device_count() methods can be useful here.
 
-Used just mpi4py method for the rank counting.
+- Used just mpi4py method for the rank counting.
 ```
 # DDP: Set environmental variables used by PyTorch
 SIZE = MPI.COMM_WORLD.Get_size()
@@ -42,7 +42,7 @@ total train time: 48.88s
 
 ### 3. Explore the cost of collective communication, by setting up a scenario, where you have only two ranks, but each rank resides on a different node. Profile and try to reason about the results.
 
-####Scenario A — Both ranks on the SAME NODE
+- Scenario A — Both ranks on the SAME NODE
 ```
 NNODES=`wc -l < $PBS_NODEFILE`
 NRANKS_PER_NODE=1
@@ -59,7 +59,7 @@ total train time: 10.84s
 
 <img width="1024" height="752" alt="image" src="https://github.com/user-attachments/assets/bc7b218a-1fa0-49b5-8215-e2dcf06906a9" />
 
-####Scenario B — Ranks on DIFFERENT NODES
+- Scenario B — Ranks on DIFFERENT NODES
 ```
 NNODES=`wc -l < $PBS_NODEFILE`
 NRANKS_PER_NODE=1
