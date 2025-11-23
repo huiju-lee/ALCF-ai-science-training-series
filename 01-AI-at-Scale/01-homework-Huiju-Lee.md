@@ -1,6 +1,5 @@
 # Homework
-## 1. The counting of ranks, does not necessarily has to be a mix-and-match between mpi4py and PALS. 
-## Try to implement the rank counting method using just PALS or mpi4py. device_count() methods can be useful here.
+## 1. The counting of ranks, does not necessarily has to be a mix-and-match between mpi4py and PALS. Try to implement the rank counting method using just PALS or mpi4py. device_count() methods can be useful here.
 
 ## Used just mpi4py method for the rank counting.
 ```
@@ -40,3 +39,50 @@ src = torch.rand((2048, 4, 512))
 tgt = torch.rand((2048, 128, 512))
 ```
 total train time: 48.88s
+
+## 3. Explore the cost of collective communication, by setting up a scenario, where you have only two ranks, but each rank resides on a different node. Profile and try to reason about the results.
+
+Scenario A — Both ranks on the SAME NODE
+```
+NNODES=`wc -l < $PBS_NODEFILE`
+NRANKS_PER_NODE=1
+let NRANKS=${NNODES}*${NRANKS_PER_NODE}
+N=2
+PPN=2
+NODES=1
+```
+x3109c0s37b0n0.hsn.cm.polaris.alcf.anl.gov 0: cpubind:list x3109c0s37b0n0 pid 2105784 rank 0 0: mask 0x3
+x3109c0s37b0n0.hsn.cm.polaris.alcf.anl.gov 1: cpubind:list x3109c0s37b0n0 pid 2105785 rank 1 1: mask 0x300
+x3109c0s37b0n0.hsn.cm.polaris.alcf.anl.gov 0: DDP: Hi from rank 0 of 2 with local rank 0.x3109c0s37b0n0
+x3109c0s37b0n0.hsn.cm.polaris.alcf.anl.gov 1: DDP: Hi from rank 1 of 2 with local rank 1.x3109c0s37b0n0
+total train time: 10.84s
+
+<img width="1024" height="752" alt="image" src="https://github.com/user-attachments/assets/bc7b218a-1fa0-49b5-8215-e2dcf06906a9" />
+
+Scenario B — Ranks on DIFFERENT NODES
+```
+NNODES=`wc -l < $PBS_NODEFILE`
+NRANKS_PER_NODE=1
+let NRANKS=${NNODES}*${NRANKS_PER_NODE}
+N=2
+PPN=1
+NODES=2
+```
+x3002c0s31b1n0.hsn.cm.polaris.alcf.anl.gov 0: cpubind:list x3002c0s31b1n0 pid 3581078 rank 0 0: mask 0x3
+x3002c0s37b0n0.hsn.cm.polaris.alcf.anl.gov 1: cpubind:list x3002c0s37b0n0 pid 883424 rank 1 0: mask 0x3
+x3002c0s31b1n0.hsn.cm.polaris.alcf.anl.gov 0: DDP: Hi from rank 0 of 2 with local rank 0.x3002c0s31b1n0
+x3002c0s37b0n0.hsn.cm.polaris.alcf.anl.gov 1: DDP: Hi from rank 1 of 2 with local rank 0.x3002c0s31b1n0
+total train time: 38.63s
+
+<img width="1003" height="720" alt="image" src="https://github.com/user-attachments/assets/20641756-36dd-42ba-a352-59e15b977e56" />
+
+Inter-node NCCL all-reduce is ~3.5× slower
+This clearly demonstrates that collective communication becomes a major bottleneck when scaling training across nodes.
+
+## 4. Try other file formats to explore the I/O bottleneck.
+
+## 5. Make the tensors really large, specially the 2nd and 3rd dimension and explore different data types.
+
+
+
+
