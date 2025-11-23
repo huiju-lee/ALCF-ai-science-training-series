@@ -1,5 +1,5 @@
 # Homework
-## 1. The counting of ranks, does not necessarily has to be a mix-and-match between mpi4py and PALS. Try to implement the rank counting method using just PALS or mpi4py. device_count() methods can be useful here.
+### 1. The counting of ranks, does not necessarily has to be a mix-and-match between mpi4py and PALS. Try to implement the rank counting method using just PALS or mpi4py. device_count() methods can be useful here.
 
 Used just mpi4py method for the rank counting.
 ```
@@ -18,7 +18,7 @@ os.environ['MASTER_PORT'] = str(2345)
 print(f"DDP: Hi from rank {RANK} of {SIZE} with local rank {LOCAL_RANK}.{MASTER_ADDR}")
 ```
 
-## 2. Play with different dimensions of the src and tgt tensors.
+### 2. Play with different dimensions of the src and tgt tensors.
 ```
 src = torch.rand((2048, 1, 512))
 tgt = torch.rand((2048, 20, 512))
@@ -40,9 +40,9 @@ tgt = torch.rand((2048, 128, 512))
 ```
 total train time: 48.88s
 
-## 3. Explore the cost of collective communication, by setting up a scenario, where you have only two ranks, but each rank resides on a different node. Profile and try to reason about the results.
+### 3. Explore the cost of collective communication, by setting up a scenario, where you have only two ranks, but each rank resides on a different node. Profile and try to reason about the results.
 
-Scenario A — Both ranks on the SAME NODE
+####Scenario A — Both ranks on the SAME NODE
 ```
 NNODES=`wc -l < $PBS_NODEFILE`
 NRANKS_PER_NODE=1
@@ -59,7 +59,7 @@ total train time: 10.84s
 
 <img width="1024" height="752" alt="image" src="https://github.com/user-attachments/assets/bc7b218a-1fa0-49b5-8215-e2dcf06906a9" />
 
-Scenario B — Ranks on DIFFERENT NODES
+####Scenario B — Ranks on DIFFERENT NODES
 ```
 NNODES=`wc -l < $PBS_NODEFILE`
 NRANKS_PER_NODE=1
@@ -79,9 +79,9 @@ total train time: 38.63s
 Inter-node NCCL all-reduce is ~3.5× slower
 This clearly demonstrates that collective communication becomes a major bottleneck when scaling training across nodes.
 
-## 4. Try other file formats to explore the I/O bottleneck.
+### 4. Try other file formats to explore the I/O bottleneck.
 
-## 5. Make the tensors really large, specially the 2nd and 3rd dimension and explore different data types.
+### 5. Make the tensors really large, specially the 2nd and 3rd dimension and explore different data types.
 
 
 
