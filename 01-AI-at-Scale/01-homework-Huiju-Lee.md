@@ -83,7 +83,10 @@ This clearly demonstrates that collective communication becomes a major bottlene
 - hpf5 file
   total train time: 11.02s
   
-- 
+- .pt file
+  total train time: 10.90s
+
+Because the dataset is small, the I/O overhead is negligible compared to the compute cost of running the Transformer.
 
 ### 5. Make the tensors really large, specially the 2nd and 3rd dimension and explore different data types.
 
