@@ -1,7 +1,7 @@
 # Homework
 ## 1. The counting of ranks, does not necessarily has to be a mix-and-match between mpi4py and PALS. Try to implement the rank counting method using just PALS or mpi4py. device_count() methods can be useful here.
 
-## Used just mpi4py method for the rank counting.
+Used just mpi4py method for the rank counting.
 ```
 # DDP: Set environmental variables used by PyTorch
 SIZE = MPI.COMM_WORLD.Get_size()
