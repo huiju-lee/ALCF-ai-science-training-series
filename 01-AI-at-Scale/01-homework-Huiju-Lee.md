@@ -80,6 +80,10 @@ Inter-node NCCL all-reduce is ~3.5× slower
 This clearly demonstrates that collective communication becomes a major bottleneck when scaling training across nodes.
 
 ### 4. Try other file formats to explore the I/O bottleneck.
+- hpf5 file
+  total train time: 11.02s
+  
+- 
 
 ### 5. Make the tensors really large, specially the 2nd and 3rd dimension and explore different data types.
 
