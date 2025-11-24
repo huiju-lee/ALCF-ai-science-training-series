@@ -81,15 +81,15 @@ This clearly demonstrates that collective communication becomes a major bottlene
 
 ### 4. Try other file formats to explore the I/O bottleneck.
 - hpf5 file
+  <img width="994" height="711" alt="image" src="https://github.com/user-attachments/assets/41f5f908-52ea-4d6e-97d1-0a689f742edd" />
+  Data loader duration: 3ms 552µs 611ns
   total train time: 11.02s
   
 - .pt file
+  <img width="993" height="719" alt="image" src="https://github.com/user-attachments/assets/f6afe9d5-6a9d-4da7-85b3-20a9e85fa42e" />
+  Data loader duration: 926µs 587ns
   total train time: 10.90s
 
-Because the dataset is small, the I/O overhead is negligible compared to the compute cost of running the Transformer.
-
-### 5. Make the tensors really large, specially the 2nd and 3rd dimension and explore different data types.
-
-
+Even though HDF5 per-batch I/O is about 3× slower, the overall training time differs very little because the dataset is small and the compute cost of the Transformer dominates the runtime.
 
 
