@@ -1,4 +1,4 @@
-##Homework 1: ml-in-the-loop
+## Homework 1: ml-in-the-loop
 ```
 initial_training_count = 10 
 max_training_count = 25  
@@ -27,4 +27,4 @@ Iteration 3:
 
 Training completed in 22.66 seconds
 
-![results](./parsl_ml_in_the_loop.png)
+![results](./ml-in-the-loop/parsl_ml_in_the_loop.png)
