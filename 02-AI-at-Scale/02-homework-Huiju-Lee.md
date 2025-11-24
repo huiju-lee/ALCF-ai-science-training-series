@@ -23,10 +23,12 @@ Took 120.47 seconds to run
 Took 110.06 seconds to run
 
 - Effect of model size (--n-layers)
+
 Increasing the number of layers increases the model’s compute cost.
 Runtime grew from 59s (1 layer) to 120s (8 layers).
 
 - Effect of Tensor Parallel Degree
+
 For small models (1 layer), TP introduced more communication than compute speedup, so:
 TP=1 was stable and efficient
 TP=2 was slightly slower
