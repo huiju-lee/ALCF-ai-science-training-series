@@ -18,27 +18,29 @@ export TMPDIR=/tmp
 export PATH=$PATH:/opt/pbs/bin
 
 # Set inputs
-NUM_SIMS=64
+NUM_SIMS=128
 GRID_SIZE=512
+
+cd /home/huijulee/advanced-topics-in-ai-schedule/ALCF-ai-science-training-series/03-Coupling-Sim-AI/producer-consumer/
 
 echo "Running producer-consumer scripts"
 echo "with $NUM_SIMS simulations of $GRID_SIZE x $GRID_SIZE grid"
-echo
+echo "Current working directory:" $(pwd)
 
 # Warmup first
 echo "Let's do a warmup run first with the Parsl + file system implementation (DISCARD THIS DATA)"
-python 6_parsl_fs_producer_consumer.py --grid_size $GRID_SIZE --num_sims $NUM_SIMS
+python /home/huijulee/advanced-topics-in-ai-schedule/ALCF-ai-science-training-series/03-Coupling-Sim-AI/producer-consumer/6_parsl_fs_producer_consumer.py --grid_size $GRID_SIZE --num_sims $NUM_SIMS
 echo
 
 # Run the tests
 echo "Running with Parsl writing to the file system"
-python 6_parsl_fs_producer_consumer.py --grid_size $GRID_SIZE --num_sims $NUM_SIMS
+python /home/huijulee/advanced-topics-in-ai-schedule/ALCF-ai-science-training-series/03-Coupling-Sim-AI/producer-consumer/6_parsl_fs_producer_consumer.py --grid_size $GRID_SIZE --num_sims $NUM_SIMS
 echo
 
 echo "Running with DragonHPC"
-dragon 8_dragon_producer_consumer.py --grid_size $GRID_SIZE --num_sims $NUM_SIMS
+dragon /home/huijulee/advanced-topics-in-ai-schedule/ALCF-ai-science-training-series/03-Coupling-Sim-AI/producer-consumer/8_dragon_producer_consumer.py --grid_size $GRID_SIZE --num_sims $NUM_SIMS
 echo
 
 echo "Running with Parsl tranfering data through futures (last since it will take longer)"
-python 5_parsl_fut_producer_consumer.py --grid_size $GRID_SIZE --num_sims $NUM_SIMS
+python /home/huijulee/advanced-topics-in-ai-schedule/ALCF-ai-science-training-series/03-Coupling-Sim-AI/producer-consumer/5_parsl_fut_producer_consumer.py --grid_size $GRID_SIZE --num_sims $NUM_SIMS
 echo

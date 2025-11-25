@@ -6,15 +6,15 @@ tstamp() {
 }
 
 NNODES=`wc -l < $PBS_NODEFILE`
-NRANKS_PER_NODE=2
+NRANKS_PER_NODE=1
 
 let NRANKS=${NNODES}*${NRANKS_PER_NODE}
 
 N=2
-PPN=2
+PPN=1
 EPOCHS=10
 
-NODES=1
+NODES=2
 
 TRACE_DIR_ROOT=./traces/pytorch_2p8
 TRACE_DIR=${TRACE_DIR_ROOT}/cuda_pt_2p8_E${EPOCHS}_N${NODES}_R${PPN}_$(tstamp)

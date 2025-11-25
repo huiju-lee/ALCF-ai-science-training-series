@@ -51,16 +51,25 @@ src = torch.rand((2048, 1, 512))
 tgt = torch.rand((2048, 20, 512))
 
 if RANK == 0:
-# Create an HDF5 file and save the tensors
-    with h5py.File("tensor_dataset.h5", "w") as hdf5_file:
-        # Save the `src` tensor
-        hdf5_file.create_dataset("src", data=src.numpy())
-        # Save the `tgt` tensor
-        hdf5_file.create_dataset("tgt", data=tgt.numpy())
+    # Save tensors to .pt files
+    torch.save(src, "src.pt")
+    torch.save(tgt, "tgt.pt")
+    print("PT dataset created successfully!")
 
-    print("HDF5 dataset created successfully!")
-
+# make sure all ranks see the files
 torch.distributed.barrier(device_ids=[torch.cuda.current_device()])
+
+class PTTensorDataset(torch.utils.data.Dataset):
+    def __init__(self, src_path, tgt_path):
+        # Load both tensors into memory once
+        self.src = torch.load(src_path)
+        self.tgt = torch.load(tgt_path)
+        assert len(self.src) == len(self.tgt)
+
+    def __len__(self):
+        return len(self.src)
+    def __getitem__(self, idx):
+        return self.src[idx], self.tgt[idx]
 
 # Custom Dataset to load data from HDF5
 class HDF5TensorDataset(torch.utils.data.Dataset):
@@ -85,7 +94,8 @@ class HDF5TensorDataset(torch.utils.data.Dataset):
         # Close the HDF5 file
         self.hdf5_file.close()
 # Load the dataset
-dataset = HDF5TensorDataset("tensor_dataset.h5")
+dataset = PTTensorDataset("src.pt", "tgt.pt")
+#dataset = HDF5TensorDataset("tensor_dataset.h5")
 
 #dataset = torch.utils.data.TensorDataset(src, tgt)
 # DDP: use DistributedSampler to partition the training data

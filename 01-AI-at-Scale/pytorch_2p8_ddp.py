@@ -6,7 +6,9 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 # DDP: Set environmental variables used by PyTorch
 SIZE = MPI.COMM_WORLD.Get_size()
 RANK = MPI.COMM_WORLD.Get_rank()
-LOCAL_RANK = os.environ.get('PALS_LOCAL_RANKID')
+num_gpus = torch.cuda.device_count()
+LOCAL_RANK = RANK % num_gpus
+#LOCAL_RANK = os.environ.get('PALS_LOCAL_RANKID')
 os.environ['RANK'] = str(RANK)
 os.environ['WORLD_SIZE'] = str(SIZE)
 MASTER_ADDR = socket.gethostname() if RANK == 0 else None
