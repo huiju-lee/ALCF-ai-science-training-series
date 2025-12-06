@@ -1,6 +1,7 @@
 ### Cerebras Homework : Run the Llama-7B example for different batch sizes and compare the performance.
 
 batch_size: 128
+<details>
 ```
 2025-12-06 01:53:15,087 INFO:   ===========================================================================
 2025-12-06 01:53:15,087 INFO:   Trainer Fit Summary
@@ -143,7 +144,9 @@ batch_size: 128
 2025-12-06 03:23:04,336 INFO:   Training completed successfully!
 2025-12-06 03:23:04,343 INFO:   Processed 25600 training sample(s) in 5389.258144948 seconds.
 ```
+<details>
 
+<details>
 batch_size: 64
 ```
 2025-12-06 03:51:15,329 INFO:   ===========================================================================
@@ -210,7 +213,9 @@ batch_size: 64
 2025-12-06 04:14:31,396 INFO:   Training completed successfully!
 2025-12-06 04:14:31,403 INFO:   Processed 12800 training sample(s) in 1396.075379023 seconds.
 ```
+<details>
 
+<details>
 batch_size: 32
 ```
 2025-12-06 03:26:28,739 INFO:   ===========================================================================
@@ -277,7 +282,8 @@ batch_size: 32
 2025-12-06 03:46:45,224 INFO:   Training completed successfully!
 2025-12-06 03:46:45,231 INFO:   Processed 6400 training sample(s) in 1216.494026363 seconds.
 ```
-
+<details>
+ 
 The total runtime of each job was quite different because it included compile time and setup time.
 However, the real training time (the time spent running the 200 training steps) was almost the same for all batch sizes — around 20 minutes.
 When we compare the actual training speed, larger batch sizes (64 and 128) ran a bit faster than batch size 32.
