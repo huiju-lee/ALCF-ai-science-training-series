@@ -1,8 +1,5 @@
 ### Cerebras Homework : Run the Llama-7B example for different batch sizes and compare the performance.
 
-batch_size: 1024
-Processed 1024 training sample(s) in 7303.586917439 seconds.
-
 batch_size: 128
 ```
 2025-12-06 01:53:15,087 INFO:   ===========================================================================
@@ -147,6 +144,73 @@ batch_size: 128
 2025-12-06 03:23:04,343 INFO:   Processed 25600 training sample(s) in 5389.258144948 seconds.
 ```
 
+batch_size: 64
+```
+2025-12-06 03:51:15,329 INFO:   ===========================================================================
+2025-12-06 03:51:15,329 INFO:   Trainer Fit Summary
+2025-12-06 03:51:15,329 INFO:   ---------------------------------------------------------------------------
+2025-12-06 03:51:15,329 INFO:   Trainer will run 1 train loop.
+2025-12-06 03:51:15,329 INFO:   
+2025-12-06 03:51:15,330 INFO:   Train steps per train loop:
+2025-12-06 03:51:15,330 INFO:   * 1 loop of 200 steps
+2025-12-06 03:51:15,330 INFO:   for a total of 200 train steps.
+2025-12-06 03:51:15,330 INFO:   
+2025-12-06 03:51:15,330 INFO:   Checkpoints will be taken every 200 steps, for a total of 1 checkpoint.
+2025-12-06 03:51:15,330 INFO:   
+2025-12-06 03:51:15,330 INFO:   Progress will be logged every 50 steps.
+2025-12-06 03:51:15,330 INFO:   ===========================================================================
+2025-12-06 03:51:15,330 INFO:   ---------------------------------------------------------------------------
+2025-12-06 03:51:15,330 INFO:   Starting train loop 1 of 1, from global step 1 to 200 (200 steps)
+2025-12-06 03:51:15,330 INFO:   ---------------------------------------------------------------------------
+2025-12-06 03:51:15,903 INFO:   Saving checkpoint at step 0
+2025-12-06 03:51:24,999 INFO:   Saved checkpoint model_dir_llama2_7b/checkpoint_0.mdl
+2025-12-06 03:51:33,593 INFO:   Compiling the model. This may take a few minutes.
+2025-12-06 03:51:33,610 INFO:   Appliance client semantic version: 1.1.0, cluster server semantic version: 1.1.2, job operator semantic version: 1.1.2
+2025-12-06 03:51:34,605 INFO:   Initiating a new image build job against the cluster server.
+2025-12-06 03:51:34,610 INFO:   User sidecar image build is disabled from server. Falling back to venv mounting.
+2025-12-06 03:51:34,631 INFO:   Appliance client semantic version: 1.1.0, cluster server semantic version: 1.1.2, job operator semantic version: 1.1.2
+2025-12-06 03:51:34,634 INFO:   Initiating a new compile wsjob against the cluster server.
+2025-12-06 03:51:34,654 INFO:   Job id: wsjob-gtmmek9dnwvuq4dhkcmkgz, workflow id: wflow-b8v3hpwtqru9fzjkkwkxjf, namespace: job-operator, remote log path: /n1/wsjob/workdir/job-operator/wsjob-gtmmek9dnwvuq4dhkcmkgz
+2025-12-06 03:51:54,654 INFO:   Poll ingress status: Waiting for all Coordinator pods to be running, current running: 0/1.
+2025-12-06 03:51:54,657 INFO:   Recording the timestamp when jobs is scheduled.
+2025-12-06 03:51:54,673 WARNING:   Event 2025-12-06 03:51:35 +0000 UTC reason=InconsistentVersion wsjob=wsjob-gtmmek9dnwvuq4dhkcmkgz message='Warning: client semantic version 1.1.0 is inconsistent with cluster server semantic version 1.1.2, there's a risk job could fail due to inconsistent setup.'
+2025-12-06 03:52:04,673 INFO:   Poll ingress status: Waiting for job ingress readiness.
+2025-12-06 03:52:44,681 INFO:   Poll ingress status: Job ingress ready, dashboard: https://grafana.anl0.cerebras.internal/d/WebHNShVz/wsjob-dashboard?orgId=1&var-wsjob=wsjob-gtmmek9dnwvuq4dhkcmkgz&from=1764992503000&to=now
+2025-12-06 03:52:44,693 INFO:   Poll ingress success: Job ingress ready, dashboard: https://grafana.anl0.cerebras.internal/d/WebHNShVz/wsjob-dashboard?orgId=1&var-wsjob=wsjob-gtmmek9dnwvuq4dhkcmkgz&from=1764992503000&to=now
+2025-12-06 03:52:45,470 INFO:   Found existing cached compile with hash: "cs_3420986671335802013"
+2025-12-06 03:52:49,328 INFO:   Compile artifacts successfully written to remote compile directory. Compile hash is: cs_3420986671335802013
+2025-12-06 03:52:54,678 INFO:   Compile was successful!
+2025-12-06 03:52:54,679 INFO:   Programming Cerebras Wafer Scale Cluster for execution. This may take a few minutes.
+2025-12-06 03:52:56,705 INFO:   Appliance client semantic version: 1.1.0, cluster server semantic version: 1.1.2, job operator semantic version: 1.1.2
+2025-12-06 03:52:56,708 INFO:   Initiating a new execute wsjob against the cluster server.
+2025-12-06 03:52:56,744 INFO:   Job id: wsjob-gu3uanrjnefdfonsstn2fb, workflow id: wflow-b8v3hpwtqru9fzjkkwkxjf, namespace: job-operator, remote log path: /n1/wsjob/workdir/job-operator/wsjob-gu3uanrjnefdfonsstn2fb
+2025-12-06 03:53:16,745 INFO:   Poll ingress status: Waiting for all Worker pods to be running, current running: 0/1.
+2025-12-06 03:53:16,747 INFO:   Recording the timestamp when jobs is scheduled.
+2025-12-06 03:53:16,763 WARNING:   Event 2025-12-06 03:52:57 +0000 UTC reason=InconsistentVersion wsjob=wsjob-gu3uanrjnefdfonsstn2fb message='Warning: client semantic version 1.1.0 is inconsistent with cluster server semantic version 1.1.2, there's a risk job could fail due to inconsistent setup.'
+2025-12-06 03:53:26,763 INFO:   Poll ingress status: Waiting for all Weight pods to be running, current running: 10/20.
+2025-12-06 03:53:36,774 INFO:   Poll ingress status: Job ingress ready, dashboard: https://grafana.anl0.cerebras.internal/d/WebHNShVz/wsjob-dashboard?orgId=1&var-wsjob=wsjob-gu3uanrjnefdfonsstn2fb&from=1764992597000&to=now
+2025-12-06 03:53:36,785 INFO:   Poll ingress success: Job ingress ready, dashboard: https://grafana.anl0.cerebras.internal/d/WebHNShVz/wsjob-dashboard?orgId=1&var-wsjob=wsjob-gu3uanrjnefdfonsstn2fb&from=1764992597000&to=now
+2025-12-06 03:53:36,889 INFO:   Preparing to execute using 1 CSX
+2025-12-06 03:54:22,641 INFO:   About to send initial weights
+2025-12-06 03:54:41,655 INFO:   Finished sending initial weights
+2025-12-06 03:54:41,656 INFO:   Finalizing appliance staging for the run
+2025-12-06 03:54:41,669 INFO:   Waiting for device programming to complete
+2025-12-06 03:58:22,193 INFO:   Device programming is complete
+2025-12-06 03:58:23,289 INFO:   Using network type: ROCE
+2025-12-06 03:58:23,289 INFO:   Waiting for input workers to prime the data pipeline and begin streaming ...
+2025-12-06 03:58:23,303 INFO:   Input workers have begun streaming input data
+2025-12-06 03:58:24,448 INFO:   Appliance staging is complete
+2025-12-06 03:58:24,448 INFO:   Beginning appliance run
+2025-12-06 04:00:07,397 INFO:   | Train Device=CSX, Step=50, Loss=8.11024, Rate=31.47 samples/sec, GlobalRate=31.10 samples/sec, LoopTimeRemaining=0:05:16, TimeRemaining=0:05:16
+2025-12-06 04:01:48,950 INFO:   | Train Device=CSX, Step=100, Loss=7.71769, Rate=31.28 samples/sec, GlobalRate=31.30 samples/sec, LoopTimeRemaining=0:03:34, TimeRemaining=0:03:34
+2025-12-06 04:03:30,759 INFO:   | Train Device=CSX, Step=150, Loss=7.06736, Rate=31.61 samples/sec, GlobalRate=31.34 samples/sec, LoopTimeRemaining=0:01:53, TimeRemaining=0:01:53
+2025-12-06 04:05:12,830 INFO:   | Train Device=CSX, Step=200, Loss=6.57218, Rate=31.75 samples/sec, GlobalRate=31.35 samples/sec, LoopTimeRemaining=0:00:11, TimeRemaining=0:00:11
+2025-12-06 04:05:12,835 INFO:   Saving checkpoint at step 200
+2025-12-06 04:14:02,380 INFO:   Saved checkpoint model_dir_llama2_7b/checkpoint_200.mdl
+2025-12-06 04:14:31,396 INFO:   Training completed successfully!
+2025-12-06 04:14:31,403 INFO:   Processed 12800 training sample(s) in 1396.075379023 seconds.
+```
+
 batch_size: 32
 ```
 2025-12-06 03:26:28,739 INFO:   ===========================================================================
@@ -213,3 +277,8 @@ batch_size: 32
 2025-12-06 03:46:45,224 INFO:   Training completed successfully!
 2025-12-06 03:46:45,231 INFO:   Processed 6400 training sample(s) in 1216.494026363 seconds.
 ```
+
+The total runtime of each job was quite different because it included compile time and setup time.
+However, the real training time (the time spent running the 200 training steps) was almost the same for all batch sizes — around 20 minutes.
+When we compare the actual training speed, larger batch sizes (64 and 128) ran a bit faster than batch size 32.
+Overall, batch size does improve performance, but the improvement is small, and the total runtime depends heavily on whether the model needed a fresh compile or could reuse a cached one.
